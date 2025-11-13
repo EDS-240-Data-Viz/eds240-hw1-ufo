@@ -1,14 +1,12 @@
 ---
-title: "Assignment #1 (HW #1)"
-subtitle: "Part 1: Annotating `{ggplot2}` code"
-description: "Assigned Mon 01/06/2025 | Due Sat 01/18/2025"
+title: "HW #1"
+subtitle: "Annotating `{ggplot2}` code"
+description: "Assigned Wed 01/07/2026 | Due Wed 01/14/2026"
 author: "Your Name"
 toc: true
 editor_options: 
   chunk_output_type: console
 ---
-
-# Part 1a. Annotate 
 
 ## I. Setup
 
