@@ -1,6 +1,6 @@
 ---
 title: "HW #1"
-subtitle: "Annotating `{ggplot2}` code"
+subtitle: "Interpreting `{ggplot2}` code"
 description: "Assigned Wed 01/07/2026 | Due Wed 01/14/2026"
 author: "Your Name"
 toc: true
