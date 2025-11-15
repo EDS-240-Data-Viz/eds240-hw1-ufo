@@ -9,6 +9,13 @@ editor_options:
   chunk_output_type: console
 ---
 
+::: {.callout-tip}
+## Some notes before you get started
+- Be sure to install any packages in the Setup chunk that you don't already have.
+- Leave the code chunk options, `eval: false` and `echo: true`, set as they are. The final infographic has been intentionally optimized (e.g., text size, spacing) for saving and viewing as a PNG file, not for display in the Plots pane or within a rendered Quarto document. As a result, the text in each individual ggplot may appear too large when viewed in the Plots pane, but will be correctly sized in the exported PNG. We’ll talk more about the nuances of saving ggplots (and why these differences occur) in a later lab section.
+- Some answers may become clearer once you’ve looked ahead at the code later in the script. Consider revisiting questions as you go.
+:::
+
 ## I. Setup
 
 ```{r}
@@ -43,7 +50,7 @@ sysfonts::font_add(family = "fa-solid", regular = here::here("fonts", "Font Awes
 showtext::showtext_auto(enable = TRUE)
 ```
 
-1. **What is the author defining in lines 15-17? Where else in the code do these defined variables show up? What advantages are there to defining these values here, as variables, rather than defining the values directly throughout the script?**
+1. **What is the author defining in lines 15-17? Where else in the code do these defined variables show up? What advantage(s) is there to defining these values here, as variables, rather than defining the values directly throughout the script?**
 
     - Your answer here
 
@@ -53,7 +60,7 @@ showtext::showtext_auto(enable = TRUE)
 
 ## II. Data wrangling
 
-### i. Create df of population size by US state
+### i. Create `df_pop`
 
 ```{r}
 #| eval: false
@@ -69,7 +76,11 @@ df_pop <- places |>
   ungroup()
 ```
 
-### ii. Create df of sightings and population by state
+3. **Describe what this data frame contains.**
+
+    - Answer here
+
+### ii. Create `df_us`
 
 ```{r}
 #| eval: false
@@ -89,7 +100,15 @@ df_us <- ufo_sightings |>
     )
 ```
 
-### iii. Create df of most commonly sighted UFO shapes
+4. **Describe what this data frame contains.**
+
+    - Answer here
+
+5. **What does `opacity_val` represent, and why is it calculated?**
+
+    - Answer here
+
+### iii. Create `df_shape`
 
 ```{r}
 #| eval: false
@@ -109,7 +128,19 @@ df_shape <- ufo_sightings |>
     )
 ```
 
-### iv. Create df of sightings by day / time
+6. **Describe what this data frame contains.**
+
+    - Answer here
+
+7. **What does `fct_reorder` do when it is applied to the `shape` variable? What would have happened if this step was not performed?**
+
+    - Answer here
+
+8. **What is the purpose of rescaling `opacity_val`?**
+
+    - Answer here
+
+### iv. Create `df_day_hour`
 
 ```{r}
 #| eval: false
@@ -133,6 +164,10 @@ df_day_hour <- ufo_sightings |>
     )
 ```
 
+9. **Describe what this data frame contains.**
+
+    - Answer here
+
 ## III. Prepare text elements
 
 ```{r}
@@ -151,9 +186,13 @@ caption <- glue("{original}{space}{dan_github}
                 {new}{space}{link}")
 ```
 
+10. **In your own words, what is the difference between `paste0()` and `glue()`? Why did the author use `paste0` to construct `quotes` and `glue` to construct the other text elements?**
+
+    - Answer here
+
 ## IV. Build plots
 
-### i. Create bar plot of commonly reported UFO shapes
+### i. Build `plot_shape`
 
 ```{r}
 #| eval: false
@@ -189,9 +228,9 @@ plot_shape <- ggplot(data = df_shape) +
   )
 ```
 
-### ii. Create US map with sightings by state 
+### ii. Build `plot_us` 
 
-**HINT:** Consider temporarily commenting out / rearranging the `geom_*()` layers to better understand how this plot is constructed
+**HINT:** Consider temporarily commenting out and/or rearranging the `geom_*()` layers to better understand how this plot is constructed
 
 ```{r}
 #| eval: false
@@ -260,8 +299,6 @@ plot_day <- ggplot(data = df_day_hour) +
 ### iv. Create quotes as individual plot objects
 
 A comment from Dan Oehm's original code: "A bit clunky but the path of least resistance."
-
-**Note:** You only need to annotate `quote1` (`quote2` & `quote3` are constructed nearly identically).
 
 ```{r}
 #| eval: false
@@ -392,7 +429,7 @@ plot_final <- plot_base +
   ) 
 
 ggsave(plot = plot_final, 
-       filename = here::here("outputs", "ufo_sightings_infographic.png"), 
+       filename = here::here("outputs", "test.png"), 
        height = 16, 
        width = 10)
 ```
@@ -425,4 +462,6 @@ ggsave(plot = plot_final,
 
     - Answer here
     
-    
+5. **How has AI assisted you (if at all) in interpreting this code? In what ways was looking at the documentation more (or potentially less) helpful?**
+
+    - Answer here

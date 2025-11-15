@@ -84,16 +84,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#i.-setup" id="toc-i.-setup" class="nav-link active" data-scroll-target="#i.-setup">I. Setup</a></li>
   <li><a href="#ii.-data-wrangling" id="toc-ii.-data-wrangling" class="nav-link" data-scroll-target="#ii.-data-wrangling">II. Data wrangling</a>
   <ul class="collapse">
-  <li><a href="#i.-create-df-of-population-size-by-us-state" id="toc-i.-create-df-of-population-size-by-us-state" class="nav-link" data-scroll-target="#i.-create-df-of-population-size-by-us-state">i. Create df of population size by US state</a></li>
-  <li><a href="#ii.-create-df-of-sightings-and-population-by-state" id="toc-ii.-create-df-of-sightings-and-population-by-state" class="nav-link" data-scroll-target="#ii.-create-df-of-sightings-and-population-by-state">ii. Create df of sightings and population by state</a></li>
-  <li><a href="#iii.-create-df-of-most-commonly-sighted-ufo-shapes" id="toc-iii.-create-df-of-most-commonly-sighted-ufo-shapes" class="nav-link" data-scroll-target="#iii.-create-df-of-most-commonly-sighted-ufo-shapes">iii. Create df of most commonly sighted UFO shapes</a></li>
-  <li><a href="#iv.-create-df-of-sightings-by-day-time" id="toc-iv.-create-df-of-sightings-by-day-time" class="nav-link" data-scroll-target="#iv.-create-df-of-sightings-by-day-time">iv. Create df of sightings by day / time</a></li>
+  <li><a href="#i.-create-df_pop" id="toc-i.-create-df_pop" class="nav-link" data-scroll-target="#i.-create-df_pop">i. Create <code>df_pop</code></a></li>
+  <li><a href="#ii.-create-df_us" id="toc-ii.-create-df_us" class="nav-link" data-scroll-target="#ii.-create-df_us">ii. Create <code>df_us</code></a></li>
+  <li><a href="#iii.-create-df_shape" id="toc-iii.-create-df_shape" class="nav-link" data-scroll-target="#iii.-create-df_shape">iii. Create <code>df_shape</code></a></li>
+  <li><a href="#iv.-create-df_day_hour" id="toc-iv.-create-df_day_hour" class="nav-link" data-scroll-target="#iv.-create-df_day_hour">iv. Create <code>df_day_hour</code></a></li>
   </ul></li>
   <li><a href="#iii.-prepare-text-elements" id="toc-iii.-prepare-text-elements" class="nav-link" data-scroll-target="#iii.-prepare-text-elements">III. Prepare text elements</a></li>
   <li><a href="#iv.-build-plots" id="toc-iv.-build-plots" class="nav-link" data-scroll-target="#iv.-build-plots">IV. Build plots</a>
   <ul class="collapse">
-  <li><a href="#i.-create-bar-plot-of-commonly-reported-ufo-shapes" id="toc-i.-create-bar-plot-of-commonly-reported-ufo-shapes" class="nav-link" data-scroll-target="#i.-create-bar-plot-of-commonly-reported-ufo-shapes">i. Create bar plot of commonly reported UFO shapes</a></li>
-  <li><a href="#ii.-create-us-map-with-sightings-by-state" id="toc-ii.-create-us-map-with-sightings-by-state" class="nav-link" data-scroll-target="#ii.-create-us-map-with-sightings-by-state">ii. Create US map with sightings by state</a></li>
+  <li><a href="#i.-build-plot_shape" id="toc-i.-build-plot_shape" class="nav-link" data-scroll-target="#i.-build-plot_shape">i. Build <code>plot_shape</code></a></li>
+  <li><a href="#ii.-build-plot_us" id="toc-ii.-build-plot_us" class="nav-link" data-scroll-target="#ii.-build-plot_us">ii. Build <code>plot_us</code></a></li>
   <li><a href="#iii.-create-tile-plot-of-sightings-by-day-time" id="toc-iii.-create-tile-plot-of-sightings-by-day-time" class="nav-link" data-scroll-target="#iii.-create-tile-plot-of-sightings-by-day-time">iii. Create tile plot of sightings by day / time</a></li>
   <li><a href="#iv.-create-quotes-as-individual-plot-objects" id="toc-iv.-create-quotes-as-individual-plot-objects" class="nav-link" data-scroll-target="#iv.-create-quotes-as-individual-plot-objects">iv. Create quotes as individual plot objects</a></li>
   <li><a href="#v.-turn-ufo-image-into-a-ggplot-object" id="toc-v.-turn-ufo-image-into-a-ggplot-object" class="nav-link" data-scroll-target="#v.-turn-ufo-image-into-a-ggplot-object">v. Turn UFO image into a ggplot object</a></li>
@@ -139,6 +139,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Some notes before you get started
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Be sure to install any packages in the Setup chunk that you don’t already have.</li>
+<li>Leave the code chunk options, <code>eval: false</code> and <code>echo: true</code>, set as they are. The final infographic has been intentionally optimized (e.g., text size, spacing) for saving and viewing as a PNG file, not for display in the Plots pane or within a rendered Quarto document. As a result, the text in each individual ggplot may appear too large when viewed in the Plots pane, but will be correctly sized in the exported PNG. We’ll talk more about the nuances of saving ggplots (and why these differences occur) in a later lab section.</li>
+<li>Some answers may become clearer once you’ve looked ahead at the code later in the script. Consider revisiting questions as you go.</li>
+</ul>
+</div>
+</div>
 <section id="i.-setup" class="level2">
 <h2 class="anchored" data-anchor-id="i.-setup">I. Setup</h2>
 <div class="cell">
@@ -170,7 +187,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-26"><a href="#cb1-26"></a>showtext<span class="sc">::</span><span class="fu">showtext_auto</span>(<span class="at">enable =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol type="1">
-<li><p><strong>What is the author defining in lines 15-17? Where else in the code do these defined variables show up? What advantages are there to defining these values here, as variables, rather than defining the values directly throughout the script?</strong></p>
+<li><p><strong>What is the author defining in lines 15-17? Where else in the code do these defined variables show up? What advantage(s) is there to defining these values here, as variables, rather than defining the values directly throughout the script?</strong></p>
 <ul>
 <li>Your answer here</li>
 </ul></li>
@@ -182,8 +199,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="ii.-data-wrangling" class="level2">
 <h2 class="anchored" data-anchor-id="ii.-data-wrangling">II. Data wrangling</h2>
-<section id="i.-create-df-of-population-size-by-us-state" class="level3">
-<h3 class="anchored" data-anchor-id="i.-create-df-of-population-size-by-us-state">i. Create df of population size by US state</h3>
+<section id="i.-create-df_pop" class="level3">
+<h3 class="anchored" data-anchor-id="i.-create-df_pop">i. Create <code>df_pop</code></h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>df_pop <span class="ot">&lt;-</span> places <span class="sc">|&gt;</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a>  <span class="fu">filter</span>(country_code <span class="sc">==</span> <span class="st">"US"</span>) <span class="sc">|&gt;</span></span>
@@ -194,9 +211,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-7"><a href="#cb2-7"></a>  <span class="fu">summarise</span>(<span class="at">pop =</span> <span class="fu">sum</span>(population)) <span class="sc">|&gt;</span></span>
 <span id="cb2-8"><a href="#cb2-8"></a>  <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<ol start="3" type="1">
+<li><p><strong>Describe what this data frame contains.</strong></p>
+<ul>
+<li>Answer here</li>
+</ul></li>
+</ol>
 </section>
-<section id="ii.-create-df-of-sightings-and-population-by-state" class="level3">
-<h3 class="anchored" data-anchor-id="ii.-create-df-of-sightings-and-population-by-state">ii. Create df of sightings and population by state</h3>
+<section id="ii.-create-df_us" class="level3">
+<h3 class="anchored" data-anchor-id="ii.-create-df_us">ii. Create <code>df_us</code></h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>df_us <span class="ot">&lt;-</span> ufo_sightings <span class="sc">|&gt;</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">filter</span>(country_code <span class="sc">==</span> <span class="st">"US"</span>) <span class="sc">|&gt;</span></span>
@@ -211,9 +234,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-11"><a href="#cb3-11"></a>    <span class="at">opacity_val =</span> num_obs_per10k <span class="sc">/</span> <span class="fu">max</span>(num_obs_per10k)</span>
 <span id="cb3-12"><a href="#cb3-12"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<ol start="4" type="1">
+<li><p><strong>Describe what this data frame contains.</strong></p>
+<ul>
+<li>Answer here</li>
+</ul></li>
+<li><p><strong>What does <code>opacity_val</code> represent, and why is it calculated?</strong></p>
+<ul>
+<li>Answer here</li>
+</ul></li>
+</ol>
 </section>
-<section id="iii.-create-df-of-most-commonly-sighted-ufo-shapes" class="level3">
-<h3 class="anchored" data-anchor-id="iii.-create-df-of-most-commonly-sighted-ufo-shapes">iii. Create df of most commonly sighted UFO shapes</h3>
+<section id="iii.-create-df_shape" class="level3">
+<h3 class="anchored" data-anchor-id="iii.-create-df_shape">iii. Create <code>df_shape</code></h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>df_shape <span class="ot">&lt;-</span> ufo_sightings <span class="sc">|&gt;</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">filter</span>(<span class="sc">!</span>shape <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"unknown"</span>, <span class="st">"other"</span>)) <span class="sc">|&gt;</span></span>
@@ -228,9 +261,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-11"><a href="#cb4-11"></a>                                  <span class="at">to =</span> <span class="fu">c</span>(<span class="fl">0.3</span>, <span class="dv">1</span>))</span>
 <span id="cb4-12"><a href="#cb4-12"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<ol start="6" type="1">
+<li><p><strong>Describe what this data frame contains.</strong></p>
+<ul>
+<li>Answer here</li>
+</ul></li>
+<li><p><strong>What does <code>fct_reorder</code> do when it is applied to the <code>shape</code> variable? What would have happened if this step was not performed?</strong></p>
+<ul>
+<li>Answer here</li>
+</ul></li>
+<li><p><strong>What is the purpose of rescaling <code>opacity_val</code>?</strong></p>
+<ul>
+<li>Answer here</li>
+</ul></li>
+</ol>
 </section>
-<section id="iv.-create-df-of-sightings-by-day-time" class="level3">
-<h3 class="anchored" data-anchor-id="iv.-create-df-of-sightings-by-day-time">iv. Create df of sightings by day / time</h3>
+<section id="iv.-create-df_day_hour" class="level3">
+<h3 class="anchored" data-anchor-id="iv.-create-df_day_hour">iv. Create <code>df_day_hour</code></h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>df_day_hour <span class="ot">&lt;-</span> ufo_sightings <span class="sc">|&gt;</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">mutate</span>(</span>
@@ -249,6 +296,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-15"><a href="#cb5-15"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="fu">paste0</span>(hour <span class="sc">-</span> <span class="dv">12</span>, <span class="st">"pm"</span>)) </span>
 <span id="cb5-16"><a href="#cb5-16"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<ol start="9" type="1">
+<li><p><strong>Describe what this data frame contains.</strong></p>
+<ul>
+<li>Answer here</li>
+</ul></li>
+</ol>
 </section>
 </section>
 <section id="iii.-prepare-text-elements" class="level2">
@@ -265,11 +318,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-9"><a href="#cb6-9"></a><span class="st">                &lt;br&gt;&lt;br&gt;</span></span>
 <span id="cb6-10"><a href="#cb6-10"></a><span class="st">                {new}{space}{link}"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<ol start="10" type="1">
+<li><p><strong>In your own words, what is the difference between <code>paste0()</code> and <code>glue()</code>? Why did the author use <code>paste0</code> to construct <code>quotes</code> and <code>glue</code> to construct the other text elements?</strong></p>
+<ul>
+<li>Answer here</li>
+</ul></li>
+</ol>
 </section>
 <section id="iv.-build-plots" class="level2">
 <h2 class="anchored" data-anchor-id="iv.-build-plots">IV. Build plots</h2>
-<section id="i.-create-bar-plot-of-commonly-reported-ufo-shapes" class="level3">
-<h3 class="anchored" data-anchor-id="i.-create-bar-plot-of-commonly-reported-ufo-shapes">i. Create bar plot of commonly reported UFO shapes</h3>
+<section id="i.-build-plot_shape" class="level3">
+<h3 class="anchored" data-anchor-id="i.-build-plot_shape">i. Build <code>plot_shape</code></h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>plot_shape <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df_shape) <span class="sc">+</span></span>
 <span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> total_sightings, <span class="at">y =</span> shape, <span class="at">alpha =</span> opacity_val), </span>
@@ -301,9 +360,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-28"><a href="#cb7-28"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="ii.-create-us-map-with-sightings-by-state" class="level3">
-<h3 class="anchored" data-anchor-id="ii.-create-us-map-with-sightings-by-state">ii. Create US map with sightings by state</h3>
-<p><strong>HINT:</strong> Consider temporarily commenting out / rearranging the <code>geom_*()</code> layers to better understand how this plot is constructed</p>
+<section id="ii.-build-plot_us" class="level3">
+<h3 class="anchored" data-anchor-id="ii.-build-plot_us">ii. Build <code>plot_us</code></h3>
+<p><strong>HINT:</strong> Consider temporarily commenting out and/or rearranging the <code>geom_*()</code> layers to better understand how this plot is constructed</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>plot_us <span class="ot">&lt;-</span>  <span class="fu">ggplot</span>(df_us) <span class="sc">+</span></span>
 <span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">geom_rect</span>(<span class="fu">aes</span>(<span class="at">xmin =</span> <span class="dv">0</span>, <span class="at">xmax =</span> <span class="dv">1</span>, <span class="at">ymin =</span> <span class="dv">0</span>, <span class="at">ymax =</span> <span class="dv">1</span>, <span class="at">alpha =</span> opacity_val), </span>
@@ -366,7 +425,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="iv.-create-quotes-as-individual-plot-objects" class="level3">
 <h3 class="anchored" data-anchor-id="iv.-create-quotes-as-individual-plot-objects">iv. Create quotes as individual plot objects</h3>
 <p>A comment from Dan Oehm’s original code: “A bit clunky but the path of least resistance.”</p>
-<p><strong>Note:</strong> You only need to annotate <code>quote1</code> (<code>quote2</code> &amp; <code>quote3</code> are constructed nearly identically).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>quote1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span><span class="st">"text"</span>, </span>
@@ -486,7 +544,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-14"><a href="#cb13-14"></a>  ) </span>
 <span id="cb13-15"><a href="#cb13-15"></a></span>
 <span id="cb13-16"><a href="#cb13-16"></a><span class="fu">ggsave</span>(<span class="at">plot =</span> plot_final, </span>
-<span id="cb13-17"><a href="#cb13-17"></a>       <span class="at">filename =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"outputs"</span>, <span class="st">"ufo_sightings_infographic.png"</span>), </span>
+<span id="cb13-17"><a href="#cb13-17"></a>       <span class="at">filename =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"outputs"</span>, <span class="st">"test.png"</span>), </span>
 <span id="cb13-18"><a href="#cb13-18"></a>       <span class="at">height =</span> <span class="dv">16</span>, </span>
 <span id="cb13-19"><a href="#cb13-19"></a>       <span class="at">width =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -517,6 +575,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Answer here</li>
 </ul></li>
 <li><p><strong>Describe two new things that you learned by interpreting / annotating this code. These could be packages, functions, or even code organizational approaches that you hadn’t previously known about or considered.</strong></p>
+<ul>
+<li>Answer here</li>
+</ul></li>
+<li><p><strong>How has AI assisted you (if at all) in interpreting this code? In what ways was looking at the documentation more (or potentially less) helpful?</strong></p>
 <ul>
 <li>Answer here</li>
 </ul></li>
