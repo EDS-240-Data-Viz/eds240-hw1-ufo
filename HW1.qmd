@@ -4,6 +4,7 @@ subtitle: "Interpreting `{ggplot2}` code"
 description: "Assigned Wed 01/07/2026 | Due Wed 01/14/2026"
 author: "Your Name"
 toc: true
+code-line-numbers: true
 editor_options: 
   chunk_output_type: console
 ---
@@ -20,7 +21,7 @@ editor_options:
 ```{r}
 #| eval: false
 #| echo: true
-#| code-line-numbers: true
+
 library(colorspace)
 library(geofacet) 
 library(ggtext) 
@@ -65,7 +66,7 @@ showtext::showtext_auto(enable = TRUE)
 ```{r}
 #| eval: false
 #| echo: true
-#| code-line-numbers: true
+
 df_pop <- places |>
   filter(country_code == "US") |>
   mutate(state = str_replace(string = state,
@@ -85,7 +86,7 @@ df_pop <- places |>
 ```{r}
 #| eval: false
 #| echo: true
-#| code-line-numbers: true
+
 df_us <- ufo_sightings |>
   filter(country_code == "US") |>
   mutate(state = str_replace(string = state,
@@ -113,7 +114,7 @@ df_us <- ufo_sightings |>
 ```{r}
 #| eval: false
 #| echo: true
-#| code-line-numbers: true
+
 df_shape <- ufo_sightings |>
   filter(!shape %in% c("unknown", "other")) |>
   count(shape) |>
@@ -145,7 +146,7 @@ df_shape <- ufo_sightings |>
 ```{r}
 #| eval: false
 #| echo: true
-#| code-line-numbers: true
+
 df_day_hour <- ufo_sightings |>
   mutate(
     day = wday(reported_date_time), 
@@ -177,7 +178,7 @@ df_day_hour <- ufo_sightings |>
 ```{r}
 #| eval: false
 #| echo: true
-#| code-line-numbers: true
+
 quotes <- paste0('"...', str_to_sentence(ufo_sightings$summary[c(47816, 6795, 93833)]), '..."')
 
 original <- glue("Original visualization by Dan Oehm:")
@@ -201,7 +202,7 @@ caption <- glue("{original}{space}{dan_github}
 ```{r}
 #| eval: false
 #| echo: true
-#| code-line-numbers: true
+
 plot_shape <- ggplot(data = df_shape) +
   geom_col(aes(x = total_sightings, y = shape, alpha = opacity_val), 
            fill = accent) +
@@ -243,7 +244,7 @@ plot_shape <- ggplot(data = df_shape) +
 ```{r}
 #| eval: false
 #| echo: true
-#| code-line-numbers: true
+
 plot_us <-  ggplot(df_us) +
   geom_rect(aes(xmin = 0, xmax = 1, ymin = 0, ymax = 1, alpha = opacity_val), 
             fill = accent) +
@@ -281,7 +282,7 @@ plot_us <-  ggplot(df_us) +
 ```{r}
 #| eval: false
 #| echo: true
-#| code-line-numbers: true
+
 plot_day <- ggplot(data = df_day_hour) +
   geom_tile(aes(x = hour, y = day, alpha = opacity_val), 
             fill = accent, 
@@ -321,7 +322,7 @@ A comment from Dan Oehm's original code: "A bit clunky but the path of least res
 ```{r}
 #| eval: false
 #| echo: true
-#| code-line-numbers: true
+
 quote1 <- ggplot() +
   annotate(geom ="text", 
            x = 0, 
@@ -382,7 +383,7 @@ quote3 <- ggplot() +
 ```{r}
 #| eval: false
 #| echo: true
-#| code-line-numbers: true
+
 plot_ufo <- ggplot() +
   annotation_custom(grid::rasterGrob(ufo_image)) +
   theme_void() +
@@ -396,7 +397,7 @@ plot_ufo <- ggplot() +
 ```{r}
 #| eval: false
 #| echo: true
-#| code-line-numbers: true
+
 plot_base <- ggplot() +
   labs(
     title = "UFO Sightings",
@@ -436,7 +437,7 @@ plot_base <- ggplot() +
 ```{r}
 #| eval: false
 #| echo: true
-#| code-line-numbers: true
+
 plot_final <- plot_base +
   inset_element(plot_shape, left = 0, right = 1, top = 1, bottom = 0.66) +
   inset_element(plot_us, left = 0.42, right = 1, top = 0.74, bottom = 0.33) +
