@@ -13,6 +13,7 @@ editor_options:
 ## Some notes before you get started
 - **Be sure to install any packages** in the Setup chunk that you don't already have.
 - **Leave the code chunk options, `eval: false` and `echo: true`, set as they are.** The final infographic has been intentionally optimized (e.g., text size, spacing) for saving and viewing as a PNG file, not for display in the Plots pane or within a rendered Quarto document. As a result, the text in each individual ggplot may appear too large when viewed in the Plots pane, but will be correctly sized in the exported PNG. We’ll talk more about the nuances of saving ggplots (and why these differences occur) in a later lab section.
+- **Questions that reference line numbers (e.g., Question 1) refer to the line numbers shown in the rendered code chunks.** You will need to render the document to view these line numbers.
 - Some answers may become clearer once you’ve looked ahead at the code further down in the script. **Consider revisiting questions as you go.**
 :::
 
@@ -307,7 +308,7 @@ plot_day <- ggplot(data = df_day_hour) +
   )
 ```
 
-14. **This plot includes one-letter labels for each day of the week. How is ths accomplished when week days are written using their three-letter abbreviations (e.g. `Mon`, `Tue`) in the `df_day_hour` data frame?**
+14. **This plot includes one-letter labels for each day of the week. How is this accomplished when week days are written using their three-letter abbreviations (e.g. `Mon`, `Tue`) in the `df_day_hour` data frame?**
 
     - Answer here
 
